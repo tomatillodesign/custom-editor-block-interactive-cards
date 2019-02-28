@@ -29,6 +29,7 @@ const {
     PanelBody,
     PanelRow,
     TextControl,
+    TextareaControl,
 } = wp.components;
 const { Fragment } = wp.element;
 
@@ -78,9 +79,18 @@ export default registerBlockType(
                 attribute: 'href',
                 selector: 'a',
             },
+          cardBody: {
+               source: 'html',
+               selector: '.clb-card__body',
+          },
+          buttonText: {
+               source: 'html',
+               selector: '.clb-card__button-text',
+               default: 'Learn More',
+          },
         },
         edit: props => {
-            const { attributes: { imgID, imgURL, imgAlt, cardType, cardTitle, cardLink },
+            const { attributes: { imgID, imgURL, imgAlt, cardType, cardTitle, cardLink, cardBody, buttonText },
                 className, setAttributes, isSelected } = props;
             const onSelectImage = img => {
                 setAttributes( {
@@ -98,8 +108,9 @@ export default registerBlockType(
             }
 
             const onChangeCardType = cardType => { setAttributes( { cardType } ) };
-
             const onChangeTitle = cardTitle => { setAttributes( { cardTitle } ) };
+            const onChangeBody = cardBody => { setAttributes( { cardBody } ) };
+            const onChangeButtonText = buttonText => { setAttributes( { buttonText } ) };
 
             return (
 			  <Fragment>
@@ -156,6 +167,24 @@ export default registerBlockType(
                                value={ cardLink }
                                onChange={ cardLink => setAttributes( { cardLink } ) }
                            />
+                           { cardType == 'flip' && (
+                                <div>
+                                <TextareaControl
+                                   className='clb-card__body'
+                                   label={ 'Card Body' }
+                                   value={ cardBody }
+                                   placeholder={ 'Card Body' }
+                                   onChange={ onChangeBody }
+                                />
+                                <TextControl
+                                   className='clb-card__button-text'
+                                   label={ 'Button Text' }
+                                   value={ buttonText }
+                                   placeholder={ 'Card Body' }
+                                   onChange={ onChangeButtonText }
+                                />
+                                </div>
+                         ) }
 
                        </Fragment>
 
@@ -202,6 +231,24 @@ export default registerBlockType(
                                        value={ cardLink }
                                        onChange={ cardLink => setAttributes( { cardLink } ) }
                                    />
+                                   { cardType == 'flip' && (
+                                       <div>
+                                       <TextareaControl
+                                          className='clb-card__body'
+                                          label={ 'Card Body' }
+                                          value={ cardBody }
+                                          placeholder={ 'Card Body' }
+                                          onChange={ onChangeBody }
+                                       />
+                                       <TextControl
+                                          className='clb-card__button-text'
+                                          label={ 'Button Text' }
+                                          value={ buttonText }
+                                          placeholder={ 'Card Body' }
+                                          onChange={ onChangeButtonText }
+                                       />
+                                       </div>
+                                ) }
 
                                    </div>
 
@@ -227,16 +274,40 @@ export default registerBlockType(
             );
         },
         save: props => {
-            const { imgURL, imgAlt, cardType, cardTitle, cardLink } = props.attributes;
+            const { imgID, imgURL, imgAlt, cardType, cardTitle, cardLink, cardBody, buttonText } = props.attributes;
+
             return (
-                <div className={"interactive-card" + ' card-' + cardType}>
-                <a href={cardLink}>
-                         <img
-                             src={ imgURL }
-                             alt={ imgAlt }
-                         />
-                         <h4 className="clb-card__title">{cardTitle}</h4>
-                    </a>
+
+                 <div className={"interactive-card" + ' card-' + cardType}>
+
+                 { cardType == 'basic' && (
+                      <a href={cardLink}>
+                               <img
+                                  src={ imgURL }
+                                  alt={ imgAlt }
+                               />
+                               <h4 className="clb-card__title">{cardTitle}</h4>
+                         </a>
+                 )}
+
+                 { cardType == 'flip' && (
+                      <div className="card-flip-inner">
+                         <div className="flip-card-front" style={ {
+							backgroundImage: `url(${ imgURL })`,
+							backgroundSize: 'cover',
+                                   width: '100%',
+                                   height: '300px',
+						} }>
+                              <h4 className="clb-card__title">{cardTitle}</h4>
+                         </div>
+                              <div className="flip-card-back">
+                                   <h4 className="clb-card__title">{cardTitle}</h4>
+                                   <div className="clb-card__body">{cardBody}</div>
+                                   <a href={cardLink} className="clb-card__button-text button">{buttonText}</a>
+                              </div>
+                         </div>
+                )}
+
                 </div>
             );
         },
