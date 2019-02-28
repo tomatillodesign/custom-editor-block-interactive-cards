@@ -1,0 +1,79 @@
+/**
+ * #.# Styles
+ *
+ * CSS for both Frontend+Backend.
+ */
+
+.ahg-card {
+	border-radius: 4px;
+	margin: 30px 0;
+	overflow: hidden;
+	@include baseBlock();
+	@include box();
+	.ahg-card__image-container {
+		// Old class name.
+		width: 300px;
+		height: 300px;
+		background-size: cover;
+		background-position: center;
+		margin: 0 auto 2em;
+
+		padding-top: 0;
+		// margin: calc(var(--box-padding-vert) * -1)
+		// 	calc(var(--box-padding-hori) * -1) var(--box-padding-vert) !important;
+		// width: calc(100% + var(--box-padding-hori) * 2);
+		// + *:not(.wp-ahg-button) {
+		// 	margin-top: 0 !important;
+		// 	padding-top: 0 !important;
+		// }
+	}
+	.ahg-card--image-circle {
+		border-radius: 100%;
+	}
+
+	.ahg-card__tagline,
+	.ahg-tagline {
+		// Old class name.
+		font-size: 0.85em;
+	}
+	.ahg-button {
+		margin-top: 0;
+		margin-bottom: 0;
+	}
+
+	.ahg-card__less-des p:last-child,
+	.ahg-card__more-des p:last-child {
+		margin-bottom: 0;
+	}
+
+	// This is the button container.
+	// > div:not(.editor-rich-text) {
+	// 	display: flex;
+	// 	.ahg-button--align-center,
+	// 	.ahg-button-center {
+	// 		// Old style.
+	// 		align-self: center;
+	// 	}
+	// 	.ahg-button--align-left,
+	// 	.ahg-button-left {
+	// 		// Old style.
+	// 		align-self: flex-start;
+	// 	}
+	// 	.ahg-button--align-right,
+	// 	.ahg-button-right {
+	// 		// Old style.
+	// 		align-self: flex-end;
+	// 	}
+	// }
+}
+
+.ahg-card.ahg-card--more {
+	.ahg-card__less-des,
+	.ahg-card__more-toggle-des {
+		display: none;
+	}
+	.ahg-card__more-des,
+	.ahg-card__less-toggle-des {
+		display: block !important;
+	}
+}

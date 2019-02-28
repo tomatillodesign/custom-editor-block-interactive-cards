@@ -1,0 +1,15 @@
+.interactive-card.card-basic {
+    text-align: center;
+    box-shadow: 0 10px 40px rgba(0,0,0,.1);
+    margin-bottom: 40px;
+    transition: all ease-in-out .3s;
+}
+
+.interactive-card.card-basic h4.clb-card__title {
+     margin-top: 12px;
+     padding-bottom: 20px;
+}
+
+.interactive-card.card-basic:hover {
+    transform: translate3d(0,-4px,0);
+}
