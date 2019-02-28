@@ -37,11 +37,12 @@ const { Fragment } = wp.element;
  * Register example block
  */
 export default registerBlockType(
-    'cgb/interactive-cards',
+    'cgb/interactive-card',
     {
         title: __( 'Interactive Card', 'clbinteractivecards' ),
         description: __( 'Add interactive cards to your content ', 'clbinteractivecards'),
         category: 'common',
+        parent: ['cgb/interactive-cardset'],
 	   icon: {
 	        foreground: '#fff',
 	        background: '#3883d6',
@@ -51,9 +52,6 @@ export default registerBlockType(
         attributes: {
             imgURL: {
                 type: 'string',
-                source: 'attribute',
-                attribute: 'src',
-                selector: 'img',
             },
             imgID: {
                 type: 'number',
