@@ -55,12 +55,17 @@ export default registerBlockType(
                 type: 'number',
                 default: 2,
             },
+            flippedCardHeight: {
+                value: 'number',
+                default: 300,
+            },
         },
         edit: props => {
-            const { attributes: { columnNumber },
+            const { attributes: { columnNumber, flippedCardHeight },
                 className, setAttributes, isSelected } = props;
 
                 const onChangeColumnNumber = columnNumber => { setAttributes( { columnNumber } ) };
+                const onChangeflippedCardHeight = flippedCardHeight => { setAttributes( { flippedCardHeight } ) };
 
             return (
                  <Fragment>
@@ -76,8 +81,16 @@ export default registerBlockType(
                             min={ 1 }
                             max={ 4 }
                         />
-
                        </PanelRow>
+                       <PanelRow>
+                       <TextControl
+                            label="Height of Flipped Cards (px)"
+                            value={ flippedCardHeight }
+                            onChange={ onChangeflippedCardHeight }
+                            min={ 100 }
+                            max={ 1200 }
+                        />
+                        </PanelRow>
                    </PanelBody>
                </InspectorControls>
 
@@ -109,7 +122,7 @@ export default registerBlockType(
             );
         },
         save: props => {
-            const { columnNumber } = props.attributes;
+            const { columnNumber, flippedCardHeight } = props.attributes;
 
             let frSpacing = '1fr 1fr';
             if( columnNumber == 1) { frSpacing = '1fr'; }
@@ -118,7 +131,9 @@ export default registerBlockType(
 
             return (
 
-                 <div className={"interactive-cardset" + ' columns-' + columnNumber} style={ {
+                 // Try nesting a style for child flip cards, see: https://stackoverflow.com/a/10833154/5369381
+
+                 <div className={ 'interactive-cardset' + ' columns-' + columnNumber}  data-card-height={flippedCardHeight} style={ {
                            gridTemplateColumns: `${ frSpacing }`,
                       } }>
                     <InnerBlocks.Content />

@@ -21,3 +21,13 @@ if ( ! defined( 'ABSPATH' ) ) {
  * Block Initializer.
  */
 require_once plugin_dir_path( __FILE__ ) . 'src/init.php';
+
+
+
+/* Enqueue Bootstrap Modal JS and CSS */
+add_action( 'wp_enqueue_scripts', 'clb_enqueue_custom_cardset_scripts' );
+function clb_enqueue_custom_cardset_scripts() {
+
+          wp_enqueue_script( 'clb-cardset-flip-height', plugin_dir_url( __FILE__ ) . 'js/clb-cardset-flip-height.js', array('jquery'), '1.0.0', true );
+
+}

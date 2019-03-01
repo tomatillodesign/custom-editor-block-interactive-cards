@@ -28,14 +28,14 @@ function clb_interactive_cards_guten_cgb_block_assets() { // phpcs:ignore
 		// filemtime( plugin_dir_path( __DIR__ ) . 'dist/blocks.style.build.css' ) // Version: File modification time.
 	);
 	// scripts
-	if ( ! is_admin() ) {
-		wp_enqueue_script(
-			'clb_guten-cgb-block-frontend-js', // Handle.
-			plugins_url( 'js/frontend.js', dirname( __FILE__ ) ),
-			[ 'wp-blocks', 'wp-element', 'wp-components', 'wp-i18n' ],
-			true
-		);
-	}
+	// if ( ! is_admin() ) {
+	// 	wp_enqueue_script(
+	// 		'clb_guten-cgb-block-frontend-js', // Handle.
+	// 		plugins_url( 'js/frontend.js', dirname( __FILE__ ) ),
+	// 		[ 'wp-blocks', 'wp-element', 'wp-components', 'wp-i18n' ],
+	// 		true
+	// 	);
+	// }
 }
 
 // Hook: Frontend assets.

@@ -12,8 +12,10 @@
 }
 
 .interactive-card.card-basic h4.clb-card__title {
-     margin-top: 12px;
-     padding-bottom: 20px;
+     /* margin-top: 12px;
+     padding-bottom: 20px; */
+     margin-top: 20px;
+     padding-bottom: 14px;
 }
 
 .interactive-card.card-basic:hover {
@@ -58,6 +60,7 @@
 .flip-card-front {
   background-color: #eee;
   color: black;
+  width: 100%;
 }
 
 
