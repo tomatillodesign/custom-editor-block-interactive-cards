@@ -293,6 +293,7 @@ export default registerBlockType(
                          <div className="flip-card-front" style={ {
 							backgroundImage: `url(${ imgURL })`,
 							backgroundSize: 'cover',
+                                   backgroundPosition: 'center',
 						} }>
                               <h4 className="clb-card__title">{cardTitle}</h4>
                          </div>
